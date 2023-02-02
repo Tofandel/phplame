@@ -1,6 +1,9 @@
 <?php
 
-namespace Lame\Settings;
+namespace Lame;
+
+use InvalidArgumentException;
+use Lame\Encoding\EncodingInterface;
 
 /**
  * Lame Settings
@@ -14,23 +17,22 @@ class Settings
     /**
      * Selected encoding type
      * 
-     * @var null|\Lame\Settings\Encoding\EncodingInterface 
+     * @var null|EncodingInterface
      */
-    protected $encoding = null;
+    protected ?Encoding\EncodingInterface $encoding = null;
     
     /**
      * Lame options
      * 
      * @var array 
      */
-    protected $options = array();
+    protected array $options = array();
     
     /**
      * Create lame settings
      * 
-     * @param \Lame\Settings\Encoding\EncodingInterface $encoding encoding related settings
+     * @param EncodingInterface $encoding encoding related settings
      * @param array $options other lame settings
-     * @return \Lame\Settings\Settings 
      */
     public function __construct(Encoding\EncodingInterface $encoding, 
         array $options = array())
@@ -48,9 +50,8 @@ class Settings
      * (d)ual-mono, (m)ono (l)eft (r)ight</i>
      * 
      * @param string $mode mode selection
-     * @return \Lame\Settings\Settings 
      */
-    public function setChannelMode($mode)
+    public function setChannelMode(string $mode): static
     {
         $this->setOption('-m', $mode);
         
@@ -61,9 +62,8 @@ class Settings
      * Set internal algorithm quality setting  0..9
      * 
      * @param int $quality algorithm quality setting
-     * @return \Lame\Settings\Settings  
      */
-    public function setAlgorithmQuality($quality)
+    public function setAlgorithmQuality(int $quality): static
     {
         $this->setOption('-q', $quality);
         
@@ -76,13 +76,12 @@ class Settings
      * 
      * @param string $key option name
      * @param mixed $value option value
-     * @return \Lame\Settings\Settings
-     * @throws \InvalidArgumentException 
+     * @throws InvalidArgumentException
      */
-    public function setOption($key, $value)
+    public function setOption(string $key, mixed $value): static
     {
         if (!array_key_exists($key, $this->options)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf('Unknown LAME option: `%s`', $key));
         }
         
@@ -96,7 +95,7 @@ class Settings
      * 
      * @return string LAME options string 
      */
-    public function buildOptions()
+    public function buildOptions(): string
     {
         $return = '';
         
@@ -123,9 +122,8 @@ class Settings
      * Lame options
      * 
      * @param array $options lame options
-     * @return null 
      */
-    protected function mergeOptions(array $options)
+    protected function mergeOptions(array $options): void
     {
         foreach ($options as $key => $value) {
             $this->setOption($key, $value);
@@ -134,10 +132,8 @@ class Settings
     
     /**
      * Set available lame options
-     * 
-     * @return null 
      */
-    protected function setAvailableOptions()
+    protected function setAvailableOptions(): void
     {
         $this->options = array(
             '--scale'                => null, 
@@ -175,17 +171,14 @@ class Settings
             '-h'                     => null, 
             '-f'                     => null, 
             '--priority'             => null, 
-            '-b'                     => null, 
-            '--freeformat'           => null, 
+            '--freeformat'           => null,
             '-v'                     => null, 
             '--vbr-old'              => null, 
             '--vbr-new'              => null, 
             '-V'                     => null, 
-            '-b'                     => null, 
-            '-B'                     => null, 
+            '-B'                     => null,
             '-F'                     => null, 
-            '-t'                     => null, 
-            '--nohist'               => null, 
+            '--nohist'               => null,
             '--abr'                  => null, 
             '--cbr'                  => null, 
             '-e'                     => null, 

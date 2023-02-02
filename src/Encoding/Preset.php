@@ -1,6 +1,6 @@
 <?php
 
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 /**
  * Enables some preconfigured settings, switches are aliases over LAME settings
@@ -16,7 +16,7 @@ class Preset implements EncodingInterface
      * 
      * @var string 
      */
-    protected $type = self::TYPE_STANDARD;
+    protected string $type = self::TYPE_STANDARD;
     
     /**
      * This preset should provide near transparency
@@ -52,11 +52,12 @@ class Preset implements EncodingInterface
      * <i>Possible values: 'medium', 'standard', 'extreme', 'insane'</i>
      * 
      * @param string $type preset type
-     * @return \Lame\Settings\Encoding\Preset 
+     * @return \Lame\Encoding\Preset 
      */
-    public function setType($type)
+    public function setType(string $type): static
     {
         $this->type = $type;
+
         return $this;
     }
     
@@ -65,7 +66,7 @@ class Preset implements EncodingInterface
      * 
      * @return string 
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -73,7 +74,7 @@ class Preset implements EncodingInterface
     /**
      * {@inheritdoc}
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return array(
             '--preset' => $this->getType()

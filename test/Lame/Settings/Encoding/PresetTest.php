@@ -1,10 +1,10 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 class PresetTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Lame\Settings\Encoding\Preset
+     * @var \Lame\Encoding\Preset
      */
     protected $encoding;
     
@@ -17,7 +17,7 @@ class PresetTest extends \PHPUnit_Framework_TestCase
     
     public function testSetTypeReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\Preset', 
+        $this->assertInstanceOf('\Lame\Encoding\Preset', 
             $this->encoding->setType(Preset::TYPE_STANDARD));
     }
     

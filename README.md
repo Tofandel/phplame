@@ -1,7 +1,7 @@
 PHP LAME 
 =========
-[![Build Status](https://travis-ci.org/b-b3rn4rd/phplame.svg?branch=master)](https://travis-ci.org/b-b3rn4rd/phplame)
-[![Coverage Status](https://coveralls.io/repos/b-b3rn4rd/phplame/badge.png?branch=master)](https://coveralls.io/r/b-b3rn4rd/phplame?branch=master)
+[![Build Status](https://travis-ci.org/tofandel/phplame.svg?branch=master)](https://travis-ci.org/tofandel/phplame)
+[![Coverage Status](https://coveralls.io/repos/tofandel/phplame/badge.png?branch=master)](https://coveralls.io/r/tofandel/phplame?branch=master)
 
 PHP LAME is a php wrapper for [LAME][1] MP3 encoder. It provides convenient interface to encode wav file(s) into mp3.
 
@@ -13,7 +13,7 @@ Install PHP LAME wrapper using Composer:
 ```json
 {
     "require": {
-        "b-b3rn4rd/phplame": "dev-master"
+        "tofandel/phplame": "dev-master"
     }
 }
 ```
@@ -113,9 +113,9 @@ This example uses optional callback to remove `$inputfile` after it was encoded.
 PHP LAME provides following encoding interfaces:
 - \Lame\Settings\Bitrate\ABR &mdash; Average Bitrate Encoding (ABR) related options
 - \Lame\Settings\Bitrate\CBR &mdash; Constant Bitrate Encoding (CBR) related options
-- \Lame\Settings\Encoding\VBR &mdash; \Lame\Settings\Encoding\VBR related options
-- \Lame\Settings\Encoding\Preset &mdash; Preconfigured settings
-- \Lame\Settings\Encoding\NullEncoding &mdash; no encoding
+- \Lame\Encoding\VBR &mdash; \Lame\Encoding\VBR related options
+- \Lame\Encoding\Preset &mdash; Preconfigured settings
+- \Lame\Encoding\NullEncoding &mdash; no encoding
 
 License
 ----

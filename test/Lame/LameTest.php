@@ -10,7 +10,7 @@ use \PHPUnit_Framework_Error;
  * 
  * @link https://github.com/mikey179/vfsStream/issues/2
  * @param string $pattern pattern
- * @return string 
+ * @return string[]|false
  */
 function glob($pattern)
 {
@@ -88,7 +88,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         
         $this->filesystem = $vfs;
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -129,7 +129,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         $inputfile = vfsStream::url('root/tmp/music/wawfiles/hello world.waw');
         $outputfile = vfsStream::url('root/tmp/music/wawfiles/abc.waw');
             
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -155,7 +155,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         $inputfile = vfsStream::url('root/tmp/music/wawfiles/hello world.waw');
         $outputfile = vfsStream::url('root/tmp/music/wawfiles/abc.waw');
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -185,7 +185,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         
         $preparedCommand = sprintf('%s %s', $inputfile, $outputfile);
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -219,7 +219,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         
         $preparedCommand = sprintf('%s %s', $inputfile, $outputfile);
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -285,7 +285,7 @@ class LameTest extends \PHPUnit_Framework_TestCase
         $inputfile = vfsStream::url('root/tmp/music/wawfiles/hello world.waw');
         $outputfile = vfsStream::url('root/tmp/music/wawfiles/abc.waw');
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')

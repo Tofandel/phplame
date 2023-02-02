@@ -12,7 +12,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $this->settings = new \Lame\Settings\Settings($encoding);
@@ -31,12 +31,12 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingsConstructorExpectOptionsToBeArray()
     {
-        new \Lame\Settings\Settings(new \Lame\Settings\Encoding\NullEncoding(), null);
+        new \Lame\Settings\Settings(new \Lame\Encoding\NullEncoding(), null);
     }
     
     public function testSettingsConstructorCallSetAvailableOptions()
     {
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -56,7 +56,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
             '-m' => 1
         );
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -78,7 +78,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
         $encoding = $reflector->getProperty('encoding');
         $encoding->setAccessible(true);
         
-        $this->assertInstanceOf('\Lame\Settings\Encoding\NullEncoding', 
+        $this->assertInstanceOf('\Lame\Encoding\NullEncoding', 
             $encoding->getValue($this->settings));
     }
     
@@ -90,7 +90,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
     
     public function testSetChannelModeCallSetOption()
     {
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -113,7 +113,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
     
     public function testSetAlgorithmQualityCallSetOption()
     {
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -189,7 +189,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
      */
     public function testMergeOptionInvokeSetOptionForEachOption($options)
     {
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')
@@ -211,7 +211,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
     {
         $options = array('-a' => 1);
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->setMethods(array('getOptions'))
             ->getMock();
         
@@ -240,7 +240,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
             '-b' => null,
         );
         
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->setMethods(array('getOptions'))
             ->getMock();
         
@@ -263,7 +263,7 @@ class SettingsTest extends \PHPUnit_Framework_TestCase
     
     public function testSetAvailableOptionsSetOptionsInConstructor()
     {
-        $encoding = $this->getMockBuilder('\Lame\Settings\Encoding\NullEncoding')
+        $encoding = $this->getMockBuilder('\Lame\Encoding\NullEncoding')
             ->getMock();
         
         $settings = $this->getMockBuilder('\Lame\Settings\Settings')

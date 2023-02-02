@@ -1,10 +1,10 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 class ABRTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Lame\Settings\Encoding\ABR
+     * @var \Lame\Encoding\ABR
      */
     protected $encoding;
     
@@ -17,7 +17,7 @@ class ABRTest extends \PHPUnit_Framework_TestCase
     
     public function testSetBitrateReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\ABR', $this->encoding->setBitrate(100));
+        $this->assertInstanceOf('\Lame\Encoding\ABR', $this->encoding->setBitrate(100));
     }
     
     public function testBitrateSettorAndGettorSelf()

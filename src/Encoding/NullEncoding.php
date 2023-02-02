@@ -1,6 +1,6 @@
 <?php
 
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 /**
  * Null Encoding, use this encoding when lame 
@@ -15,7 +15,7 @@ class NullEncoding implements EncodingInterface
     /**
      * {@inheritdoc}
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return array();
     }    

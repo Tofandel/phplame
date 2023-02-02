@@ -1,10 +1,10 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 class CBRTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Lame\Settings\Encoding\CBR
+     * @var \Lame\Encoding\CBR
      */
     protected $encoding;
     
@@ -17,7 +17,7 @@ class CBRTest extends \PHPUnit_Framework_TestCase
     
     public function testSetBitrateReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\CBR', $this->encoding->setBitrate(100));
+        $this->assertInstanceOf('\Lame\Encoding\CBR', $this->encoding->setBitrate(100));
     }
     
     public function testBitrateSettorAndGettorSelf()

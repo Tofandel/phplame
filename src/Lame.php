@@ -1,6 +1,9 @@
 <?php
 namespace Lame;
 
+use Closure;
+use InvalidArgumentException;
+
 /**
  * Lame wrapper
  * 
@@ -12,32 +15,27 @@ class Lame
 {
     /**
      * LAME binary file path
-     * 
-     * @var null|string 
      */
-    protected $binary = null;
+    protected ?string $binary = null;
     
     /**
      * LAME settings
-     * 
-     * @var \Lame\Settings 
      */
-    protected $settings = null;
+    protected ?Settings $settings = null;
 
     /**
      * Whether to perform is_executable and is_readable checks on lame binary.
      * On some PHP configs these checks fails but command can be executed nevertheless.
-     * @var bool
      */
-    protected $executableChecks = true;
+    protected bool $executableChecks = true;
+
     /**
      * Create new instance of LAME wrapper
      * 
      * @param string $binary lame binary file location
-     * @param Settings\Settings $settings instance of lame settings
-     * @return \Lame\Lame 
+     * @param Settings $settings instance of lame settings
      */
-    public function __construct($binary, Settings\Settings $settings)
+    public function __construct(string $binary, Settings $settings)
     {
         $this->settings = $settings;
         $this->binary = $binary;
@@ -45,20 +43,16 @@ class Lame
     
     /**
      * LAME binary file path
-     * 
-     * @return string|null 
      */
-    public function getBinary()
+    public function getBinary(): ?string
     {
         return $this->binary;
     }
     
     /**
      * Get Lame settings
-     * 
-     * @return \Lame\Settings\Settings 
      */
-    public function getSettings()
+    public function getSettings(): ?Settings
     {
         return $this->settings;
     }
@@ -66,18 +60,16 @@ class Lame
     /**
      * @param bool $executableChecks Whether to perform is_executable and is_readable checks on lame binary.
      */
-    public function setExecutableChecks($executableChecks)
+    public function setExecutableChecks(bool $executableChecks)
     {
         $this->executableChecks = $executableChecks;
     }
 
-    /**
-     * @return bool
-     */
-    public function getExecutableChecks()
+    public function getExecutableChecks(): bool
     {
         return $this->executableChecks;
     }
+
     /**
      * Encode given wav file(s) into mp3 file(s).
      * $inputfile can be a location to a single file or a pattern
@@ -90,13 +82,12 @@ class Lame
      *  /\* do someting with $inputfile or $outputfile file *\/
      * }
      * </code>
-     * 
+     *
      * @param string $inputfile input file location or pattern
      * @param string $outputfile output file location or directory name
-     * @param \Closure $callback callback function to be called after encoding
-     * @return null
+     * @param Closure|null $callback callback function to be called after encoding
      */
-    public function encode($inputfile, $outputfile, \Closure $callback = null)
+    public function encode(string $inputfile, string $outputfile, Closure $callback = null): void
     { 
         $files = $this->getFilenames($inputfile, $outputfile);
         
@@ -117,20 +108,20 @@ class Lame
      * @param string $inputfile input file name
      * @param string $outputfile output file name
      * @return string LAME command
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    protected function prepareCommand($inputfile, $outputfile)
+    protected function prepareCommand(string $inputfile, string $outputfile): string
     {
         $binary = $this->getBinary();
 
         if ($this->executableChecks) {
             if (!is_executable($binary)) {
-                throw new \InvalidArgumentException(
+                throw new InvalidArgumentException(
                     sprintf('LAME binary path: `%s` is invalid or not executable', $binary));
             }
 
             if (!is_readable($inputfile)) {
-                throw new \InvalidArgumentException(
+                throw new InvalidArgumentException(
                     sprintf('Input file `%s` is not readable', $inputfile));
             }
         }
@@ -149,10 +140,10 @@ class Lame
      * @return boolean
      * @throws \RuntimeException 
      */
-    protected function executeCommand($command)
+    protected function executeCommand(string $command): bool
     {
         $output = '';
-        $handle = popen("{$command} 2>&1", 'r');
+        $handle = popen("$command 2>&1", 'r');
         
         while (!feof($handle)) {
             $output .= fgets($handle);
@@ -175,21 +166,21 @@ class Lame
      * @param string $inputfile input file name or pattern
      * @param string $outputfile output file name or directory
      * @return array assoc. array of input and output files to be processed
-     * @throws \InvalidArgumentException 
+     * @throws InvalidArgumentException
      */
-    protected function getFilenames($inputfile, $outputfile)
+    protected function getFilenames(string $inputfile, string $outputfile): array
     {
         $filenames  = array();
         $inputfiles = glob($inputfile, GLOB_BRACE);
         
         if (!is_array($inputfiles)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf('`%s` is invalid input file location or pattern', 
                     $inputfile));
         }
         
         if ((1 < sizeof($inputfiles)) && !is_dir($outputfile)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf('If input file is a pattern, output file should be 
                     an existing directory, `%s` given', $outputfile));
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 /**
  *  Use Constant Bitrate Encoding (CBR) and specify CBR related options
@@ -16,14 +16,14 @@ class CBR implements EncodingInterface
      * 
      * @var int 
      */
-    protected $bitrate = 128;
+    protected int $bitrate = 128;
     
     /**
      * Get bitrate (8, 16, 24, ..., 320)
      * 
      * @return int 
      */
-    public function getBitrate()
+    public function getBitrate(): int
     {
         return $this->bitrate;
     }
@@ -31,20 +31,18 @@ class CBR implements EncodingInterface
     /**
      * Set bitrate in kbps (default 128 kbps)
      * possible values (8, 16, 24, ..., 320)
-     * 
-     * @param int $bitrate bitrate
-     * @return \Lame\Settings\Bitrate\CBR 
      */
-    public function setBitrate($bitrate)
+    public function setBitrate(int $bitrate): static
     {
         $this->bitrate = $bitrate;
+
         return $this;
     }
     
     /**
      * {@inheritDoc}
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return array(
             '--cbr' => true,

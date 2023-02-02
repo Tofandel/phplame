@@ -1,10 +1,10 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 class VBRTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Lame\Settings\Encoding\VBR
+     * @var \Lame\Encoding\VBR
      */
     protected $encoding;
     
@@ -42,17 +42,17 @@ class VBRTest extends \PHPUnit_Framework_TestCase
     
     public function testSetMinBitrateReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\VBR', $this->encoding->setMinBitrate(1));
+        $this->assertInstanceOf('\Lame\Encoding\VBR', $this->encoding->setMinBitrate(1));
     }
     
     public function testSetVBRNewReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\VBR', $this->encoding->setVBRNew(true));
+        $this->assertInstanceOf('\Lame\Encoding\VBR', $this->encoding->setVBRNew(true));
     }
     
     public function testSetVBROldReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\VBR', $this->encoding->setVBROld(true));
+        $this->assertInstanceOf('\Lame\Encoding\VBR', $this->encoding->setVBROld(true));
     }
     
     public function testGetMinBitrateReturnSetMinBitrateReturn()
@@ -82,7 +82,7 @@ class VBRTest extends \PHPUnit_Framework_TestCase
     
     public function testSetMaxBitrateReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\VBR', $this->encoding->setMaxBitrate(1));
+        $this->assertInstanceOf('\Lame\Encoding\VBR', $this->encoding->setMaxBitrate(1));
     }
     
     public function testGetMaxBitrateReturnSetMaxBitrateReturn()
@@ -94,7 +94,7 @@ class VBRTest extends \PHPUnit_Framework_TestCase
     
     public function testSetQualityReturnSelf()
     {
-        $this->assertInstanceOf('\Lame\Settings\Encoding\VBR', $this->encoding->setQuality(1));
+        $this->assertInstanceOf('\Lame\Encoding\VBR', $this->encoding->setQuality(1));
     }
     
     public function testGetOptionsIsArray()

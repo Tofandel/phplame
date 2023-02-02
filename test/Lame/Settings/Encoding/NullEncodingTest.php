@@ -1,10 +1,10 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 class NullEncodingTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Lame\Settings\Encoding\NullEncoding
+     * @var \Lame\Encoding\NullEncoding
      */
     protected $encoding;
     

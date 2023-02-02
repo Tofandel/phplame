@@ -1,5 +1,5 @@
 <?php
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 /**
  * Encoding interface
@@ -12,8 +12,6 @@ interface EncodingInterface
 {
     /**
      * Get options specified for given encoding
-     * 
-     * @return array 
      */
-    public function getOptions();
+    public function getOptions(): array;
 }

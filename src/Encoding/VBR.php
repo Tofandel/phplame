@@ -1,6 +1,6 @@
 <?php
 
-namespace Lame\Settings\Encoding;
+namespace Lame\Encoding;
 
 /**
  * Use Variable Bit Rate Encoding (VBR) and specify VBR related options
@@ -13,96 +13,73 @@ class VBR implements EncodingInterface
 {
     /**
      * VBR quality setting
-     * 
-     * @var float 
      */
-    protected $quality = null;
+    protected ?float $quality = null;
     
     /**
      * Minimum allowed bitrate
-     * 
-     * @var int|null 
      */
-    protected $minBitrate = null;
+    protected ?int $minBitrate = null;
     
     /**
      * Maximum allowed bitrate
-     * 
-     * @var int|null 
      */
-    protected $maxBitrate = null;
+    protected ?int $maxBitrate = null;
     
     /**
      * Use old variable bitrate (VBR) routine
-     * 
-     * @var boolean|null 
      */
-    protected $vbrOld = null;
+    protected ?bool $vbrOld = null;
     
     /**
      * Use new variable bitrate (VBR) routine (default)
-     * 
-     * @var boolean|null 
      */
-    protected $vbrNew = null;
+    protected ?bool $vbrNew = null;
     
     /**
      * VBR quality setting
-     * 
-     * @return float|null 
      */
-    public function getQuality()
+    public function getQuality(): ?float
     {
         return $this->quality;
     }
     
     /**
      * Get a minimum allowed bitrate
-     * 
-     * @return int|null 
      */
-    public function getMinBitrate()
+    public function getMinBitrate(): ?int
     {
         return $this->minBitrate;
     }
     
     /**
      * Get a maximum allowed bitrate
-     * 
-     * @return int|null 
      */
-    public function getMaxBitrate()
+    public function getMaxBitrate(): ?int
     {
         return $this->maxBitrate;
     }
     
     /**
      * Determine if use new variable bitrate (VBR) routine (default)
-     * 
-     * @return boolean|null 
      */
-    public function isVBRNew()
+    public function isVBRNew(): ?bool
     {
         return $this->vbrNew;
     }
     
     /**
      * Determine if use old variable bitrate (VBR) routine
-     * 
-     * @return boolean|null 
      */
-    public function isVBROld()
+    public function isVBROld(): ?bool
     {
         return $this->vbrOld;
     }
     
     /**
      * Specify a minimum allowed bitrate (8,16,24,...,320)
-     * 
-     * @param int $minBitrate min bitrate
-     * @return \Lame\Settings\Encoding\VBR 
      */
-    public function setMinBitrate($minBitrate)
+    public function setMinBitrate(int $minBitrate): static
     {
         $this->minBitrate = $minBitrate;
         
@@ -111,11 +88,8 @@ class VBR implements EncodingInterface
     
     /**
      * Specify a maximum allowed bitrate (8,16,24,...,320)
-     * 
-     * @param int $maxBitrate maxbitrate
-     * @return \Lame\Settings\Encoding\VBR 
      */
-    public function setMaxBitrate($maxBitrate)
+    public function setMaxBitrate(int $maxBitrate): static
     {
         $this->maxBitrate = $maxBitrate;
         
@@ -125,11 +99,8 @@ class VBR implements EncodingInterface
     /**
      * VBR quality setting  (0=highest quality, 9.999=lowest)
      * default is 4
-     * 
-     * @param float $quality quality setting
-     * @return \Lame\Settings\Encoding\VBR
      */
-    public function setQuality($quality)
+    public function setQuality(float $quality): static
     {
         $this->quality = $quality;
         
@@ -139,26 +110,20 @@ class VBR implements EncodingInterface
     
     /**
      * Use new variable bitrate (VBR) routine (default)
-     * 
-     * @param boolean $flag use vbr new
-     * @return \Lame\Settings\Encoding\VBR
      */
-    public function setVBRNew($flag)
+    public function setVBRNew(bool $flag): static
     {
-        $this->vbrNew = (bool)$flag;
+        $this->vbrNew = $flag;
         
         return $this;
     }
     
     /**
      * Use old variable bitrate (VBR) routine
-     * 
-     * @param boolean $flag use vbr old
-     * @return \Lame\Settings\Encoding\VBR
      */
-    public function setVBROld($flag)
+    public function setVBROld(bool $flag): static
     {
-        $this->vbrOld = (bool)$flag;
+        $this->vbrOld = $flag;
         
         return $this;
     }
@@ -166,7 +131,7 @@ class VBR implements EncodingInterface
     /**
      * {@inheritdoc}
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         $options = array();
         
